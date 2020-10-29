@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/metrognome-react/static/css/main.8066708d.chunk.css",
+    "main.js": "/metrognome-react/static/js/main.12f24193.chunk.js",
+    "main.js.map": "/metrognome-react/static/js/main.12f24193.chunk.js.map",
+    "runtime-main.js": "/metrognome-react/static/js/runtime-main.65c2c644.js",
+    "runtime-main.js.map": "/metrognome-react/static/js/runtime-main.65c2c644.js.map",
+    "static/js/2.dad57ac0.chunk.js": "/metrognome-react/static/js/2.dad57ac0.chunk.js",
+    "static/js/2.dad57ac0.chunk.js.map": "/metrognome-react/static/js/2.dad57ac0.chunk.js.map",
+    "static/js/3.b5d30637.chunk.js": "/metrognome-react/static/js/3.b5d30637.chunk.js",
+    "static/js/3.b5d30637.chunk.js.map": "/metrognome-react/static/js/3.b5d30637.chunk.js.map",
+    "index.html": "/metrognome-react/index.html",
+    "static/css/main.8066708d.chunk.css.map": "/metrognome-react/static/css/main.8066708d.chunk.css.map",
+    "static/js/2.dad57ac0.chunk.js.LICENSE.txt": "/metrognome-react/static/js/2.dad57ac0.chunk.js.LICENSE.txt",
+    "static/media/METROGNOME.a4c7239d.PNG": "/metrognome-react/static/media/METROGNOME.a4c7239d.PNG",
+    "static/media/off.e0c05eab.svg": "/metrognome-react/static/media/off.e0c05eab.svg",
+    "static/media/on.fd8c0096.svg": "/metrognome-react/static/media/on.fd8c0096.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65c2c644.js",
+    "static/js/2.dad57ac0.chunk.js",
+    "static/css/main.8066708d.chunk.css",
+    "static/js/main.12f24193.chunk.js"
+  ]
+}
