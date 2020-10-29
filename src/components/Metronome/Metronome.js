@@ -1,6 +1,7 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import './Metronome.css';
-
+import on from '../../on.svg';
+import off from '../../off.svg'
 
 class Metronome extends React.Component
 {
@@ -8,20 +9,20 @@ class Metronome extends React.Component
       super(props);
       this.state = {
           audioContext: null,
-          notesInQueue: [],         // notes that have been put into the web audio and may or may not have been played yet {note, time}
+          notesInQueue: [],
           currentQuarterNote: 0,
           tempo: 120,
-          lookahead: 25,          // How frequently to call scheduling function (in milliseconds)
-          scheduleAheadTime: 0.1,   // How far ahead to schedule audio (sec)
-          nextNoteTime: 0.0,    // when the next note is due
+          lookahead: 25,    
+          scheduleAheadTime: 0.1,   
+          nextNoteTime: 0.0,
           isRunning: false,
-          intervalID: null
+          intervalID: null,
+          message: 'Quit all the malarkey and start practicing!'
     }
   }
     nextNote = () =>
     {
-        // Advance current note and time by a quarter note (crotchet if you're posh)
-        var secondsPerBeat = 60.0 / this.state.tempo; // Notice this picks up the CURRENT tempo value to calculate beat length.
+        var secondsPerBeat = 60.0 / this.state.tempo;
         this.setState({
           nextNoteTime: this.state.nextNoteTime + secondsPerBeat,
           currentQuarterNote: this.state.currentQuarterNote+1,
@@ -35,29 +36,23 @@ class Metronome extends React.Component
 
     scheduleNote = (beatNumber, time) =>
     {
-        // push the note on the queue, even if we're not playing.
         this.setState({
           notesInQueue: ([...this.state.notesInQueue, { note: beatNumber, time: time }])
         })
-        // create an oscillator
         const osc = this.state.audioContext.createOscillator();
         const envelope = this.state.audioContext.createGain();
-        
-        osc.frequency.value = (beatNumber % 4 === 0) ? 1000 : 800;
+        osc.frequency.value = (beatNumber % 4 === 0) ? 1300 : 1000;
         envelope.gain.value = 1;
         envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
         envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02);
-
         osc.connect(envelope);
         envelope.connect(this.state.audioContext.destination);
-    
         osc.start(time);
         osc.stop(time + 0.03);
     }
 
     scheduler = () =>
     {
-        // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
         while (this.state.nextNoteTime < this.state.audioContext.currentTime + this.state.scheduleAheadTime ) {
             this.scheduleNote(this.state.currentQuarterNote, this.state.nextNoteTime);
             this.nextNote();
@@ -84,8 +79,9 @@ class Metronome extends React.Component
 
     stop = () =>
     {
-        this.isRunning = false;
-
+        this.setState({
+          isRunning: false
+        })
         clearInterval(this.state.intervalID);
     }
 
@@ -101,7 +97,8 @@ class Metronome extends React.Component
 render() {
   return (
           <div className="metronome">
-            {this.state.tempo}
+            <p class="speech">{this.state.message}</p>
+            <p class="current-bpm">{this.state.tempo} BPM</p>
             <input
               type="range"
               min="60"
@@ -112,9 +109,8 @@ render() {
               })}
             />
             <button onClick={() => this.startStop()}>
-              {this.state.isRunning ? 'Stop' : 'Start'}
+              {this.state.isRunning ? <img className="on-off" src={off} alt="turn off" /> : <img className="on-off" src={on} alt="turn on" />}
             </button>
-            Metronome Component
           </div>
         )
 }
