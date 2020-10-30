@@ -107,13 +107,39 @@ class Metronome extends React.Component
           tempo: this.state.tempo + 1
         }) 
       }
-
+    }
+    checkTempo = () => {
+      if (this.state.tempo < 120) {
+        this.setState({
+          message: 'This be some love making music'
+        })
+      }
+      if (this.state.tempo > 120 && this.state.tempo < 139) {
+          this.setState({
+            message: 'DIS BOPS DOE'
+          })
+      }
+      if (this.state.tempo > 139 && this.state.tempo < 159) {
+        this.setState({
+          message: 'We rarely play in this tempo range. Challenge accepted?'
+        })
+      }
+      if (this.state.tempo > 159 && this.state.tempo < 180) {
+        this.setState({
+          message: 'Get in the zone, your comfort zone'
+        })
+      }
+      if (this.state.tempo > 181) {
+        this.setState({
+          message: 'You drank a lot of coffee...'
+        })
+      }
     }
 render() {
   return (
           <div className="metronome">
-            {/* <p class="speech">{this.state.message}</p> */}
-            <p class="current-bpm"> {this.state.tempo} bpm</p>
+            <p>{this.state.message}</p>
+            <p className="current-bpm"> {this.state.tempo} bpm</p>
             <div className="slider">
             <img className="tempo-change" src={minus} alt="decrease BPM by 1" onClick={() => {
               this.tweakTempo('minus')
@@ -125,7 +151,7 @@ render() {
               value={this.state.tempo}
               onChange={(e) => this.setState({
                 tempo: e.target.value
-              })}
+              }, this.checkTempo())}
             />
             <img className="tempo-change" src={plus} alt="increase BPM by 1" onClick={() => {
               this.tweakTempo('add')
