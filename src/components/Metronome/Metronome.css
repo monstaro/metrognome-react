@@ -40,17 +40,51 @@ p.speech {
 
   .current-bpm {
       font-size: 72px;
-      color: pink;
+      color: rgb(103, 105, 255);
+      /* padding-left: 169px; */
   }
+
+  .metronome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
 
   .on-off {
       width: 85px;
   }
 
   button {
+    border: none;
+    background: none;
     display: block;
+    width: 10%;
+    align-self: center;
   }
 
   input[type=range] {
-      width: 100%;
+      width: 30%;
+  }
+
+  .tempo-change {
+      width: 25px;
+  }
+
+  .slider {
+      display: flex;
+      justify-content: center;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .metronome {
+        display: flex;
+        align-content: center;
+    }
+    input[type=range] {
+        width: 80%;
+    }
+    .on-off {
+        width: 50px;
+    }
   }

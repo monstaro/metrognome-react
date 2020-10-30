@@ -1,7 +1,9 @@
 import React from 'react';
 import './Metronome.css';
 import on from '../../on.svg';
-import off from '../../off.svg'
+import off from '../../off.svg';
+import plus from '../../plus.svg';
+import minus from '../../minus.svg';
 
 class Metronome extends React.Component
 {
@@ -94,11 +96,28 @@ class Metronome extends React.Component
             this.start();
         }
     }
+    tweakTempo = (direction) => {
+      console.log(direction)
+      if (direction === "minus") {
+        this.setState({
+          tempo: this.state.tempo - 1
+        })
+      } else {
+        this.setState({
+          tempo: this.state.tempo + 1
+        }) 
+      }
+
+    }
 render() {
   return (
           <div className="metronome">
-            <p class="speech">{this.state.message}</p>
-            <p class="current-bpm">{this.state.tempo} BPM</p>
+            {/* <p class="speech">{this.state.message}</p> */}
+            <p class="current-bpm"> {this.state.tempo} bpm</p>
+            <div className="slider">
+            <img className="tempo-change" src={minus} alt="decrease BPM by 1" onClick={() => {
+              this.tweakTempo('minus')
+            }}/>
             <input
               type="range"
               min="60"
@@ -108,6 +127,10 @@ render() {
                 tempo: e.target.value
               })}
             />
+            <img className="tempo-change" src={plus} alt="increase BPM by 1" onClick={() => {
+              this.tweakTempo('add')
+            }}/>
+            </div>
             <button onClick={() => this.startStop()}>
               {this.state.isRunning ? <img className="on-off" src={off} alt="turn off" /> : <img className="on-off" src={on} alt="turn on" />}
             </button>
