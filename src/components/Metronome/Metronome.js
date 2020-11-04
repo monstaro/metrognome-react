@@ -73,7 +73,7 @@ class Metronome extends React.Component
         }
         this.setState({
           isRunning: true,
-          tcurrentQuarterNote: 0,
+          currentQuarterNote: 0,
           nextNoteTime: 0 + 0.05,
           intervalID: setInterval(() => this.scheduler(), this.state.lookahead)
         })
@@ -89,6 +89,7 @@ class Metronome extends React.Component
 
     startStop = () =>
     {
+      console.log(this.state.tempo)
         if (this.state.isRunning) {
             this.stop();
         }
@@ -97,39 +98,41 @@ class Metronome extends React.Component
         }
     }
     tweakTempo = (direction) => {
-      console.log(direction)
       if (direction === "minus") {
         this.setState({
-          tempo: this.state.tempo - 1
+          tempo: (parseInt(this.state.tempo) - 1)
         })
-      } else {
+      } if (direction === "add") {
         this.setState({
-          tempo: this.state.tempo + 1
+          tempo: (parseInt(this.state.tempo) + 1)
         }) 
+      } else {
+        console.log('error')
       }
     }
     checkTempo = () => {
+      console.log(this.state.tempo)
       if (this.state.tempo < 120) {
         this.setState({
           message: 'This be some love making music'
         })
       }
-      if (this.state.tempo > 120 && this.state.tempo < 139) {
+      if (this.state.tempo >= 120 && this.state.tempo < 139) {
           this.setState({
             message: 'DIS BOPS DOE'
           })
       }
-      if (this.state.tempo > 139 && this.state.tempo < 159) {
+      if (this.state.tempo >= 139 && this.state.tempo < 159) {
         this.setState({
           message: 'We rarely play in this tempo range. Challenge accepted?'
         })
       }
-      if (this.state.tempo > 159 && this.state.tempo < 180) {
+      if (this.state.tempo >= 159 && this.state.tempo < 180) {
         this.setState({
           message: 'Get in the zone, your comfort zone'
         })
       }
-      if (this.state.tempo > 181) {
+      if (this.state.tempo >= 181) {
         this.setState({
           message: 'You drank a lot of coffee...'
         })
