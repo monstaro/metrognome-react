@@ -98,7 +98,7 @@ class Metronome extends React.Component
             this.start();
         }
     }
-    tweakTempo = (direction) => {
+    tweakTempo = (direction, savedTempo) => {
       if (direction === "minus") {
         this.setState({
           tempo: (parseInt(this.state.tempo) - 1)
@@ -107,8 +107,10 @@ class Metronome extends React.Component
         this.setState({
           tempo: (parseInt(this.state.tempo) + 1)
         }) 
-      } else {
-        console.log('error')
+      } else if (direction === "custom") {
+        this.setState({
+          tempo: parseInt(savedTempo)
+        })
       }
     }
     saveSongToStorage = (action) => {
@@ -185,7 +187,7 @@ render() {
             <div className="saved-songs">
               {
                 localStorage.getItem('songs') &&
-                Object.keys(JSON.parse(localStorage.getItem('songs'))).map(song  => <SavedTempos  songName={song} tempo={JSON.parse(localStorage.getItem('songs'))[song]}/>)
+                Object.keys(JSON.parse(localStorage.getItem('songs'))).map(song  => <SavedTempos clickHandler={this.tweakTempo} songName={song} tempo={JSON.parse(localStorage.getItem('songs'))[song]}/>)
               }
             </div>
           </div>
