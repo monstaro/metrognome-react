@@ -4,6 +4,7 @@ import on from '../../on.svg';
 import off from '../../off.svg';
 import plus from '../../plus.svg';
 import minus from '../../minus.svg';
+import SavedTempos from '../SavedTempos/SavedTempos';
 
 class Metronome extends React.Component
 {
@@ -110,8 +111,21 @@ class Metronome extends React.Component
         console.log('error')
       }
     }
+    saveSongToStorage = (action) => {
+      let songName = document.querySelector('#songName').value;
+      let songs;
+      if(localStorage.getItem('songs') === null) {
+        songs = {};
+      } else {
+        songs = JSON.parse(localStorage.getItem('songs'))
+      }
+      if (!songs[songName]) {
+        songs[songName] = this.state.tempo;
+      }
+      localStorage.setItem('songs', JSON.stringify(songs));
+    }
     checkTempo = () => {
-      console.log(this.state.tempo)
+      console.log(JSON.parse(localStorage.getItem('songs')))
       if (this.state.tempo < 120) {
         this.setState({
           message: 'This be some love making music'
@@ -163,6 +177,17 @@ render() {
             <button onClick={() => this.startStop()}>
               {this.state.isRunning ? <img className="on-off" src={off} alt="turn off" /> : <img className="on-off" src={on} alt="turn on" />}
             </button>
+            <button onClick={() => this.saveSongToStorage('save')}>Save This Tempo</button>
+
+            <form className="save-tempo-form">
+              <input type="text" id="songName" placeholder="song name"></input>
+            </form>
+            <div className="saved-songs">
+              {
+                localStorage.getItem('songs') &&
+                Object.keys(JSON.parse(localStorage.getItem('songs'))).map(song  => <SavedTempos  songName={song} tempo={JSON.parse(localStorage.getItem('songs'))[song]}/>)
+              }
+            </div>
           </div>
         )
 }
