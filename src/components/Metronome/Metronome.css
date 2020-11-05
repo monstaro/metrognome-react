@@ -115,14 +115,22 @@ p.speech {
   }
 
   @media only screen and (max-width: 600px) {
+    * {
+        margin: 0;
+        padding: 0px;
+    }
     .metronome {
         display: flex;
         align-content: center;
     }
     input[type=range] {
         width: 80%;
+        margin: 0;
     }
     .on-off {
-        width: 50px;
+        width: 100px;
+    }
+    button {
+        width: 100%;
     }
   }
