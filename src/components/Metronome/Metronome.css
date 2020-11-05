@@ -41,8 +41,45 @@ p.speech {
   .current-bpm {
       font-size: 72px;
       color: rgb(103, 105, 255);
-      /* padding-left: 169px; */
   }
+
+  .song-name-input {
+    height: 30px;
+    width: 260px;
+    border-radius: 100px;
+    border: 2px solid black;
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .save-clear-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+  }
+  button:hover {
+      cursor: pointer;
+  }
+  .save-btn {
+      background-color: rgb(103, 105, 255);
+      border-radius: 100px;
+      color: white;
+      font-size: 1.3em;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      padding: 10px;
+  }
+
+  .clr-btn {
+    background-color: red;
+    border-radius: 100px;
+    color: white;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 10px;
+}
 
   .metronome {
     display: flex;
@@ -53,6 +90,7 @@ p.speech {
 
   .on-off {
       width: 85px;
+      padding: 25px;
   }
 
   button {
