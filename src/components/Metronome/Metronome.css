@@ -4,8 +4,8 @@
   }
 
   .song-name-input {
-    height: 30px;
-    width: 260px;
+    height: 40px;
+    width: 290px;
     border-radius: 100px;
     border: 2px solid black;
     font-size: 1em;
@@ -14,13 +14,17 @@
 
   .save-clear-buttons {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     padding: 20px;
   }
   button:hover {
       cursor: pointer;
   }
+
+  .saved-songs-header {
+    font-weight: bold;
+  }
+
   .save-btn {
       background-color: rgb(103, 105, 255);
       border-radius: 100px;
@@ -29,6 +33,7 @@
       font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
       padding: 10px;
+      width: 100px;
   }
 
   .clr-btn {
@@ -39,17 +44,23 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     padding: 10px;
+    width: 100px;
 }
 
   .metronome {
     display: flex;
     flex-direction: column;
+    padding-top: 25px;
     text-align: center;
-    justify-content: center;
+    width: 40%;
+}
+
+  .metronome-container {
+    display: flex;
 }
 
   .on-off {
-      width: 85px;
+      width: 125px;
       padding: 25px;
   }
 
@@ -57,12 +68,11 @@
     border: none;
     background: none;
     display: block;
-    width: 10%;
     align-self: center;
   }
 
   input[type=range] {
-      width: 30%;
+      width: 50%;
   }
 
   .tempo-change {
@@ -74,6 +84,11 @@
       justify-content: center;
   }
 
+  .saved-songs {
+    justify-content: right;
+    padding-top: 25px;
+  }
+
   @media only screen and (max-width: 600px) {
     * {
         margin: 0;
@@ -82,6 +97,11 @@
     .metronome {
         display: flex;
         align-content: center;
+        width: 100%;
+    }
+    .metronome-container {
+      display: flex;
+      flex-direction: column;
     }
     input[type=range] {
         width: 80%;
@@ -92,5 +112,9 @@
     }
     button {
         width: 100%;
+    }
+    .song-name-input {
+      text-align: center;
+      margin: auto;
     }
   }

@@ -14,7 +14,7 @@ class Metronome extends React.Component
           audioContext: null,
           notesInQueue: [],
           currentQuarterNote: 0,
-          tempo: 120,
+          tempo: localStorage.getItem('currentTempo') || 120,
           lookahead: 25,    
           scheduleAheadTime: 0.1,   
           nextNoteTime: 0.0,
@@ -35,6 +35,9 @@ class Metronome extends React.Component
             currentQuarterNote: 0
           })
         }
+    }
+    componentDidUpdate = () => {
+      localStorage.setItem('currentTempo', this.state.tempo);
     }
     scheduleNote = (beatNumber, time) =>
     {
@@ -123,6 +126,7 @@ class Metronome extends React.Component
     }
 render() {
   return (
+    <div className="metronome-container">
           <div className="metronome">
             <p>{this.state.message}</p>
             <p className="current-bpm"> {this.state.tempo} bpm</p>
@@ -146,19 +150,19 @@ render() {
             <button onClick={() => this.startStop()}>
               {this.state.isRunning ? <img className="on-off" src={off} alt="turn off" /> : <img className="on-off" src={on} alt="turn on" />}
             </button>
-
-
-            <form className="save-tempo-form">
-              <input type="text" id="songName" className="song-name-input" placeholder="song name"></input>
+          <form className="save-tempo-form">
+              <input type="text" id="songName" className="song-name-input" placeholder="Type your song name"></input>
               <div class="save-clear-buttons">
             <button className="save-btn" onClick={() => this.saveSongToStorage('save')}>SAVE</button>
             <button className="clr-btn" onClick={() => localStorage.clear()}>CLEAR</button>
             </div>
             </form>
-            <div className="saved-songs">
+          </div>
+          <div className="saved-songs">
+            <h2 className="saved-songs-header">Saved Songs</h2>
               {
                 localStorage.getItem('songs') &&
-                Object.keys(JSON.parse(localStorage.getItem('songs'))).map(song  => <SavedTempos clickHandler={this.tweakTempo} songName={song} tempo={JSON.parse(localStorage.getItem('songs'))[song]}/>)
+                Object.keys(JSON.parse(localStorage.getItem('songs'))).map(song  => <SavedTempos clickHandler={this.tweakTempo} songName={song} currentTempo={this.state.tempo} tempo={JSON.parse(localStorage.getItem('songs'))[song]}/>)
               }
             </div>
           </div>
