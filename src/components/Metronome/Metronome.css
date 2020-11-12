@@ -95,8 +95,6 @@
         padding: 0px;
     }
     .metronome {
-        display: flex;
-        align-content: center;
         width: 100%;
     }
     .metronome-container {
