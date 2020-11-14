@@ -151,7 +151,9 @@ render() {
               {this.state.isRunning ? <img className="on-off" src={off} alt="turn off" /> : <img className="on-off" src={on} alt="turn on" />}
             </button>
           <form className="save-tempo-form">
+            <label for="song name input">
               <input type="text" id="songName" className="song-name-input" placeholder="Type your song name"></input>
+              </label>
               <div class="save-clear-buttons">
             <button className="save-btn" onClick={() => this.saveSongToStorage('save')}>SAVE</button>
             <button className="clr-btn" onClick={() => localStorage.clear()}>CLEAR</button>
