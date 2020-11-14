@@ -77,6 +77,7 @@
 
   .tempo-change {
       width: 25px;
+      height: 25px;
   }
 
   .slider {
@@ -103,7 +104,9 @@
     }
     input[type=range] {
         width: 80%;
-        margin: 0;
+        display: flex;
+        margin: 0px;
+        padding: 0px;
     }
     .on-off {
         width: 100px;
