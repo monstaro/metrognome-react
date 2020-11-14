@@ -4,7 +4,8 @@ import "./Header.css";
 const Header = () => {
     return (
         <div className="header">
-            metrognome.
+            <p>metrognome v</p>
+            <p>2.1.1</p>
         </div>
     )
 }
